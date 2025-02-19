@@ -61,14 +61,7 @@ export default function Navbar() {
                 Home
               </NavLink>
             </li>
-            <li>
-              <NavLink
-                to="cart"
-                className="py-2 px-3 text-gray-900 dark:text-white nav-link"
-              >
-                Cart <span className="text-main">{numOfCartItems}</span>
-              </NavLink>
-            </li>
+
             <li>
               <NavLink
                 to="products"
@@ -91,6 +84,22 @@ export default function Navbar() {
                 className="py-2 px-3 text-gray-900 dark:text-white nav-link"
               >
                 Brands
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="cart"
+                className="py-2 px-3 text-gray-900 dark:text-white nav-link"
+              >
+              <i class="fa-solid fa-cart-shopping fa-lg"></i><span className="px-1">{numOfCartItems}</span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="wishlist"
+                className="py-2 px-3 text-gray-900 dark:text-white nav-link"
+              >
+              <i class="fa-solid fa-heart fa-lg"></i>
               </NavLink>
             </li>
           </ul>: ''}

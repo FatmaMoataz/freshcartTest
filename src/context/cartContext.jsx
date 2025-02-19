@@ -38,7 +38,7 @@ export default function CartContextProvider({children}) {
         const {data} = await axios.delete(`${API_URL}/${id}`, {headers})
         if(data.status == "success") {
           setNumOfCartItems(data.numOfCartItems)
-           toast("Product removed successfully!",{type:"success", theme:"dark", position:"bottom-right"});
+           toast.success("Product removed successfully!",{type:"success", theme:"dark", position:"bottom-right"});
         }
         setCartDetails(data)
         return data
@@ -49,9 +49,14 @@ export default function CartContextProvider({children}) {
             return data
             }
             async function clearCart() {
-                const {data} = await axios.delete(API_URL, {headers})
-                setCartDetails(null)
-                return null   
+              const { data } = await axios.delete(API_URL, { headers });
+              if (data.status === "success") {
+                
+                setCartDetails(null);
+                setNumOfCartItems(0);
+                toast.success("Cart cleared successfully!", { theme: "dark", position: "bottom-right" });
+            } 
+            return data; 
                 }
                 async function cashOnDelivery(shippingAddress) {
                   const {data} = await axios.post(`${ORDER_API_URL}/${cartId}`,{shippingAddress}, {headers})

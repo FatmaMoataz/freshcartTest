@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useFormik } from 'formik'
 import React, { useState } from 'react'
+import { Helmet } from 'react-helmet';
 import { useNavigate } from 'react-router-dom';
 import { BounceLoader } from 'react-spinners';
 import * as Yup from 'yup';
@@ -52,13 +53,17 @@ const registerForm = useFormik({
 })
 
   return (
+    <>
+    <Helmet>
+    <title>Register</title>
+  </Helmet> 
 <form onSubmit={registerForm.handleSubmit} className=" mx-auto my-10 w-[70%]">
   <h1 className='text-3xl my-7 text-main font-bold'>Register Now</h1>
   
   {
-ApiError ? <div class="p-2 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
-<i class="fa-solid fa-circle-exclamation"></i>
-<span class="font-medium">  {ApiError}</span>
+ApiError ? <div className="p-2 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+<i className="fa-solid fa-circle-exclamation"></i>
+<span className="font-medium">  {ApiError}</span>
 </div> : ''
 }
 
@@ -67,9 +72,9 @@ ApiError ? <div class="p-2 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:b
     <label htmlFor="floating_name" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-main peer-focus:dark:text-main peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Name</label>
   </div>
 {
-registerForm.errors.name && registerForm.touched.name ?   <div class="p-2 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
-<i class="fa-solid fa-circle-exclamation"></i>
-<span class="font-medium">  {registerForm.errors.name}</span>
+registerForm.errors.name && registerForm.touched.name ?   <div className="p-2 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+<i className="fa-solid fa-circle-exclamation"></i>
+<span className="font-medium">  {registerForm.errors.name}</span>
 </div> : ''
 }
   <div className="relative z-0 w-full mb-5 group">
@@ -77,9 +82,9 @@ registerForm.errors.name && registerForm.touched.name ?   <div class="p-2 mb-4 t
     <label htmlFor="floating_email" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-main peer-focus:dark:text-main peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email</label>
   </div>
   {
-registerForm.errors.email && registerForm.touched.email ?   <div class="p-2 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
-<i class="fa-solid fa-circle-exclamation"></i>
-<span class="font-medium">  {registerForm.errors.email}</span>
+registerForm.errors.email && registerForm.touched.email ?   <div className="p-2 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+<i className="fa-solid fa-circle-exclamation"></i>
+<span className="font-medium">  {registerForm.errors.email}</span>
 </div> : ''
 }
   <div className="relative z-0 w-full mb-5 group">
@@ -87,9 +92,9 @@ registerForm.errors.email && registerForm.touched.email ?   <div class="p-2 mb-4
     <label htmlFor="floating_password" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-main peer-focus:dark:text-main peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Password</label>
   </div>
   {
-registerForm.errors.password && registerForm.touched.password ?   <div class="p-2 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
-<i class="fa-solid fa-circle-exclamation"></i>
-<span class="font-medium">  {registerForm.errors.password}</span>
+registerForm.errors.password && registerForm.touched.password ?   <div className="p-2 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+<i className="fa-solid fa-circle-exclamation"></i>
+<span className="font-medium">  {registerForm.errors.password}</span>
 </div> : ''
 }
   <div className="relative z-0 w-full mb-5 group">
@@ -97,9 +102,9 @@ registerForm.errors.password && registerForm.touched.password ?   <div class="p-
     <label htmlFor="floating_repassword" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-main peer-focus:dark:text-main peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Confirm Password</label>
   </div>
   {
-registerForm.errors.rePassword && registerForm.touched.rePassword ?   <div class="p-2 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
-<i class="fa-solid fa-circle-exclamation"></i>
-<span class="font-medium">  {registerForm.errors.rePassword}</span>
+registerForm.errors.rePassword && registerForm.touched.rePassword ?   <div className="p-2 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+<i className="fa-solid fa-circle-exclamation"></i>
+<span className="font-medium">  {registerForm.errors.rePassword}</span>
 </div> : ''
 }
   <div className="relative z-0 w-full mb-5 group">
@@ -107,9 +112,9 @@ registerForm.errors.rePassword && registerForm.touched.rePassword ?   <div class
     <label htmlFor="floating_phone" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-main peer-focus:dark:text-main peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Phone</label>
   </div>
   {
-registerForm.errors.phone && registerForm.touched.phone ?   <div class="p-2 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
-<i class="fa-solid fa-circle-exclamation"></i>
-<span class="font-medium">  {registerForm.errors.phone}</span>
+registerForm.errors.phone && registerForm.touched.phone ?   <div className="p-2 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+<i className="fa-solid fa-circle-exclamation"></i>
+<span className="font-medium">  {registerForm.errors.phone}</span>
 </div> : ''
 }
 
@@ -121,6 +126,6 @@ registerForm.errors.phone && registerForm.touched.phone ?   <div class="p-2 mb-4
 }
 
 </form>
-
+</>
   )
 }

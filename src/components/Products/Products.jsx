@@ -1,7 +1,16 @@
 import React from 'react'
+import { Helmet } from 'react-helmet'
+import RecentProducts from '../Home/components/RecentProducts/RecentProducts'
 
 export default function Products() {
   return (
-    <div>Products</div>
+    <>
+    <Helmet>
+    <title>Products</title>
+  </Helmet>
+<div className="p-5">
+<RecentProducts/>
+</div>
+    </>
   )
 }

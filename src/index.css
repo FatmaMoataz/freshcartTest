@@ -6,7 +6,7 @@
     scroll-behavior: smooth;
 }
 .active, .nav-link:hover {
-    @apply text-main border-b border-main;
+    @apply text-main;
 }
 *::selection {
     color: #fff;

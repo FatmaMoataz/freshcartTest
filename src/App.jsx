@@ -1,24 +1,27 @@
-import { useContext, useEffect, useState } from 'react'
+import { lazy, Suspense, useContext, useEffect } from 'react'
 import './App.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Home from './components/Home/Home'
 import Layout from './components/Layout/Layout'
-import Categories from './components/Categories/Categories'
-import Brands from './components/Brands/Brands'
-import Products from './components/Products/Products'
-import Login from './components/Login/Login'
-import Register from './components/Register/Register'
-import Cart from './components/Cart/Cart'
 import NotFound from './components/NotFound/NotFound'
 import { tokenContext } from './context/tokenContext'
 import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes'
 import AuthView from './components/AuthView/AuthView'
-import ProductDetails from './components/ProductDetails/ProductDetails'
 import { ToastContainer } from 'react-toastify';
-import Checkout from './components/Checkout/Checkout'
-import AllOrders from './components/AllOrders/AllOrders'
 
 function App() {
+
+const Cart = lazy(() => import('./components/Cart/Cart'))
+const Home = lazy(() => import('./components/Home/Home'))
+const Categories = lazy(() => import('./components/Categories/Categories'))
+const Brands = lazy(() => import('./components/Brands/Brands'))
+const Products = lazy(() => import('./components/Products/Products'))
+const Login = lazy(() => import('./components/Login/Login'))
+const Register = lazy(() => import('./components/Register/Register'))
+const ProductDetails = lazy(() => import('./components/ProductDetails/ProductDetails'))
+const Checkout = lazy(() => import('./components/Checkout/Checkout'))
+const AllOrders = lazy(() => import('./components/AllOrders/AllOrders'))
+const WishList = lazy(() => import('./components/WishList/WishList'))
+const ForgetPassword = lazy(() => import('./components/ForgetPassword/ForgetPassword'))
 
 let {setToken} = useContext(tokenContext)
 useEffect(() => {
@@ -29,16 +32,66 @@ setToken(localStorage.getItem("userToken"))
 
   const routes = createBrowserRouter([
   {path:"", element:<Layout/>, children:[
-    {path:"home", element:<ProtectedRoutes><Home/></ProtectedRoutes>},
-    {path:"categories", element:<ProtectedRoutes><Categories/></ProtectedRoutes>},
-    {path:"brands", element:<ProtectedRoutes><Brands/></ProtectedRoutes>},
-    {path:"products", element:<ProtectedRoutes><Products/></ProtectedRoutes>},
-    {path:"login", element:<AuthView><Login/> </AuthView>},
-    {path:"register", element:<AuthView><Register/> </AuthView>},
-    {path:"cart", element:<ProtectedRoutes><Cart/></ProtectedRoutes>},
-    {path:"productDetails/:id/:categoryId", element:<ProtectedRoutes><ProductDetails/></ProtectedRoutes>},
-    {path:"checkout", element:<ProtectedRoutes><Checkout/></ProtectedRoutes>},
-    {path:"allorders", element:<ProtectedRoutes><AllOrders/></ProtectedRoutes>},
+    {path:"home", element:
+    <Suspense>
+    <ProtectedRoutes><Home/></ProtectedRoutes>
+    </Suspense>
+},
+    {path:"categories", element:
+    <Suspense>
+  <ProtectedRoutes><Categories/></ProtectedRoutes>
+    </Suspense>
+  },
+    {path:"brands", element:
+    <Suspense>
+<ProtectedRoutes><Brands/></ProtectedRoutes>
+    </Suspense>
+    },
+    {path:"products", element:
+    <Suspense>
+    <ProtectedRoutes><Products/></ProtectedRoutes>
+    </Suspense>
+},
+    {path:"login", element:
+    <Suspense>
+    <AuthView><Login/> </AuthView>
+    </Suspense>
+},
+    {path:"register", element:
+    <Suspense>
+    <AuthView><Register/> </AuthView>
+    </Suspense>
+},
+    {path:"cart", element:
+    <Suspense>
+   <ProtectedRoutes><Cart/></ProtectedRoutes>
+    </Suspense>
+ },
+    {path:"productDetails/:id/:categoryId", element:
+    <Suspense>
+    <ProtectedRoutes><ProductDetails/></ProtectedRoutes>
+    </Suspense>
+},
+    {path:"checkout", element:
+    <Suspense>
+    <ProtectedRoutes><Checkout/></ProtectedRoutes>
+    </Suspense>
+},
+    {path:"allorders", element:
+    <Suspense>
+    <ProtectedRoutes><AllOrders/></ProtectedRoutes>
+    </Suspense>
+},
+    {path:"wishlist", element:
+    <Suspense>
+    <ProtectedRoutes><WishList/></ProtectedRoutes>
+    </Suspense>
+},
+    {path:"forgetPassword", element:
+    <Suspense>
+    <AuthView><ForgetPassword/></AuthView>
+    </Suspense>
+},
     {path:"*", element: <NotFound/>}
   ]}
 ])
